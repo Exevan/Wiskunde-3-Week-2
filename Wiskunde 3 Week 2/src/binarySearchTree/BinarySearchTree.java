@@ -18,17 +18,17 @@ public class BinarySearchTree{
 	}
 	
 	
-	private BinaryNode root;
+	private BinaryNode groot;
 
 	public BinarySearchTree(){
 	}
 
 	public BinaryNode getRoot() {
-		return root;
+		return groot;
 	}
 	
 	public boolean lookup(int target){
-		return lookup(root, target);
+		return lookup(groot, target);
 	}
 	
 	private boolean lookup(BinaryNode node, int target){
@@ -45,7 +45,21 @@ public class BinarySearchTree{
 	}
 	
 	public void insert(int data){
-		// TODO implement
+		insert(data, groot);
+	}
+	
+	public void insert(int data, BinaryNode node) {
+		if(data < node.data) {
+			if(node.left == null)
+				node.left = new BinaryNode(data);
+			else
+				insert(data, node.left);
+		} else if(data < node.data) {
+			if(node.right == null)
+				node.right = new BinaryNode(data);
+			else
+				insert(data, node.right);
+		}
 	}
 
 }

@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryTree {
-		
+
 	private BinaryNode root;
 
 	public BinaryTree(BinaryNode root) {
 		this.root = root;
 	}
+
 
 	public BinaryNode getRoot() {
 		return root;
@@ -18,24 +19,20 @@ public class BinaryTree {
 	public void setRoot(BinaryNode root) {
 		this.root = root;
 	}
-	
-	public boolean isBST(){
-		List<Integer> data = inorder(root, new ArrayList<Integer>());
-		for(int i = 1; i < data.size(); i++) {
-			if(data.get(i) <= data.get(i-1)) return false;
-		}
-		return true;
-	}
-	
-	private List<Integer> inorder(BinaryNode node, List<Integer> data) {
-		if(node.getLeft() != null)
-			inorder(node.getLeft(), data);	
-		data.add((Integer) node.getData());
-		if(node.getRight() != null)
-			inorder(node.getRight(), data);	
-		return data;
-	}
-	
 
-		
+	public boolean isBST(){
+		return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+
+
+	private boolean	isBST(BinaryNode node, int min, int max) {
+		if(node == null) return true;
+		if(node.getData() > min && node.getData() < max 
+				&& isBST(node.getLeft(), min, Math.min(node.getData(), max))
+				&& isBST(node.getRight(), Math.max(node.getData(), min), max))
+			return true;
+		else
+			return false;
+	}
+
 }
