@@ -54,7 +54,7 @@ public class BinarySearchTree{
 				node.left = new BinaryNode(data);
 			else
 				insert(data, node.left);
-		} else if(data < node.data) {
+		} else if(data > node.data) {
 			if(node.right == null)
 				node.right = new BinaryNode(data);
 			else
